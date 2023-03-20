@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-        html,body {
+        html,
+        body {
             margin: 0;
             padding: 0;
         }
 
         html {
-             background: url(./assets/1.jpg);
+            background: url(./assets/3.jpg);
             background-size: cover;
             background-repeat: no-repeat;
-            font-family: roboto, sans-serif;
+            font-family: 'Times New Roman', roboto, sans-serif, Cambria, Cochin, Georgia, Times, serif;
         }
 
         h1 {
@@ -33,14 +34,14 @@
         }
 
         .clock {
-            border: 20px solid rgb(3, 57, 77);
+            border: 20px solid rgb(2, 40, 42);
+            /* border: 20px solid rgb(2, 43, 58);*/
             border-radius: 50%;
-            margin: 1rem auto;
-            height: 30rem;
-            width: 30rem;
+            margin: 3rem auto;
+            height: 55vh;
+            width: 55vh;
             padding: 1rem;
             box-shadow: 0px 0px 12px 6px rgb(2, 78, 60);
-            /* position: relative; */
         }
 
         .clock-face {
@@ -49,7 +50,6 @@
             position: relative;
             width: 100%;
             height: 100%;
-            
         }
 
         .hand {
@@ -59,28 +59,61 @@
             top: 50%;
             border: 1px solid;
             border-radius: 5px;
-            transform-origin:100%;  
+            transform-origin: 100%;
         }
 
         .second-hand {
             height: 2px;
-            /* transform: rotate(30deg); */
+            z-index: 3;
+            animation: seconds 60s linear infinite ;
         }
+        @keyframes seconds {
+            from{
+              
+            }
+            to{
+                rotate: 360deg;
+            }
+        }
+
 
         .min-hand {
             height: 6px;
-            /* transform: rotate(40deg); */
+            z-index: 1;
+            width: 250px;
+            translate: 15px;
+            animation: min 3600s linear infinite;
         }
+        @keyframes min {
+            from{
+              
+            }
+            to{
+                rotate: 360deg;
+            }
+        }
+
 
         .hour-hand {
             height: 10px;
-            /* transform: rotate(30deg); */
+            width: 150px;
+            translate: 115px -2px;
+            z-index: 2;
+            animation: hour 43200s linear infinite;
+        }
+        @keyframes hour {
+            from{
+              
+            }
+            to{
+                rotate: 360deg;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>OverClock Time</h1>
+    <h1>Minute Master</h1>
     <hr>
     <div class="clock">
         <div class="clock-face">
@@ -90,33 +123,31 @@
         </div>
     </div>
 
-     <script>
+    <script>
         const secondHand = document.querySelector(".second-hand")
-        /*const minHand = document.querySelector(".min-hand")
-        const hourHand = document.querySelector(".hour-hand")*/
-
-
+        const minHand = document.querySelector(".min-hand")
+        const hourHand = document.querySelector(".hour-hand")
         function setClock() {
             const now = new Date()
 
             const seconds = now.getSeconds()
-            const secondsDegrees = ((seconds/ 60) * 360)
-            secondHand.style.transform = `rotate(${secondsDegrees}deg)`
+            const secondsDegrees = ((seconds / 60) * 360) + 90
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 
             const minutes = now.getMinutes()
-            const minutesDegrees = ((minutes / 60) * 360)
+            const minutesDegrees = ((minutes / 60) * 360) + 90
             minHand.style.transform = `rotate(${minutesDegrees}deg)`
 
             const hours = now.getHours()
-            const hourDegrees = ((hours/ 12) * 360)
+            const hourDegrees = ((hours / 12) * 360) + 90
             hourHand.style.transform = `rotate(${hourDegrees}deg)`
-
         }
-
+        setClock()
+       /* setClock()
         setInterval(function () {
             setClock()
         }, 1000)
-        setClock()
+       */
 
     </script>  
 </body>
