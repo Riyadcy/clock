@@ -68,8 +68,7 @@
             animation: seconds 60s linear infinite ;
         }
         @keyframes seconds {
-            from{
-              
+            from{  
             }
             to{
                 rotate: 360deg;
@@ -80,13 +79,12 @@
         .min-hand {
             height: 6px;
             z-index: 1;
-            width: 250px;
-            translate: 15px;
+            width: 240px;
+            left: 1%;
             animation: min 3600s linear infinite;
         }
         @keyframes min {
-            from{
-              
+            from{     
             }
             to{
                 rotate: 360deg;
@@ -96,14 +94,13 @@
 
         .hour-hand {
             height: 10px;
-            width: 150px;
-            translate: 115px -2px;
             z-index: 2;
+            width: 150px;
+            left: 19%;
             animation: hour 43200s linear infinite;
         }
         @keyframes hour {
-            from{
-              
+            from{  
             }
             to{
                 rotate: 360deg;
@@ -132,14 +129,14 @@
 
             const seconds = now.getSeconds()
             const secondsDegrees = ((seconds / 60) * 360) + 90
-            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`
 
             const minutes = now.getMinutes()
-            const minutesDegrees = ((minutes / 60) * 360) + 90
+            const minutesDegrees = ((minutes / 60) * 360) + 90 + (seconds/10)
             minHand.style.transform = `rotate(${minutesDegrees}deg)`
 
             const hours = now.getHours()
-            const hourDegrees = ((hours / 12) * 360) + 90
+            const hourDegrees = ((hours / 12) * 360) + 90 + (minutes*0.5)
             hourHand.style.transform = `rotate(${hourDegrees}deg)`
         }
         setClock()
