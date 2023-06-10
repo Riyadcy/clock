@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            background: url(./assets/3.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Times New Roman', roboto, sans-serif, Cambria, Cochin, Georgia, Times, serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(170, 255, 162);
+            margin: 1rem auto;
+        }
+
+        hr {
+            width: 100px;
+            margin: 1rem auto;
+        }
+
+        .clock {
+            border: 20px solid rgb(2, 40, 42);
+            /* border: 20px solid rgb(2, 43, 58);*/
+            border-radius: 50%;
+            margin: 3rem auto;
+            height: 55vh;
+            width: 55vh;
+            padding: 1rem;
+            box-shadow: 0px 0px 12px 6px rgb(2, 78, 60);
+        }
+
+        .clock-face {
+            background-image: url(./assets/time.png);
+            background-size: cover;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hand {
+            width: 50%;
+            background-color: rgb(137, 217, 235);
+            position: absolute;
+            top: 50%;
+            border: 1px solid;
+            border-radius: 5px;
+            transform-origin: 100%;
+        }
+
+        .second-hand {
+            height: 2px;
+            z-index: 3;
+            animation: seconds 60s linear infinite ;
+        }
+        @keyframes seconds {
+            from{  
+            }
+            to{
+                rotate: 360deg;
+            }
+        }
+
+
+        .min-hand {
+            height: 6px;
+            z-index: 1;
+            width: 240px;
+            left: 1%;
+            animation: min 3600s linear infinite;
+        }
+        @keyframes min {
+            from{     
+            }
+            to{
+                rotate: 360deg;
+            }
+        }
+
+
+        .hour-hand {
+            height: 10px;
+            z-index: 2;
+            width: 150px;
+            left: 19%;
+            animation: hour 43200s linear infinite;
+        }
+        @keyframes hour {
+            from{  
+            }
+            to{
+                rotate: 360deg;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Minute Master</h1>
+    <hr>
+    <div class="clock">
+        <div class="clock-face">
+            <div class="hand second-hand"></div>
+            <div class="hand min-hand"></div>
+            <div class="hand hour-hand"></div>
+        </div>
+    </div>
+
+    <script>
+        const secondHand = document.querySelector(".second-hand")
+        const minHand = document.querySelector(".min-hand")
+        const hourHand = document.querySelector(".hour-hand")
+        function setClock() {
+            const now = new Date()
+
+            const seconds = now.getSeconds()
+            const secondsDegrees = ((seconds / 60) * 360) + 90
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`
+
+            const minutes = now.getMinutes()
+            const minutesDegrees = ((minutes / 60) * 360) + 90 + (seconds/10)
+            minHand.style.transform = `rotate(${minutesDegrees}deg)`
+
+            const hours = now.getHours()
+            const hourDegrees = ((hours / 12) * 360) + 90 + (minutes*0.5)
+            hourHand.style.transform = `rotate(${hourDegrees}deg)`
+        }
+        setClock()
+       /* setClock()
+        setInterval(function () {
+            setClock()
+        }, 1000)
+       */
+
+    </script>  
+</body>
+
+</html>
+
+#not so responsive
